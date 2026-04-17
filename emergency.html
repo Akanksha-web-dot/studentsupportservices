@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Emergency Contacts</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: url("ADMIN BLOCK (1).webp") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+.overlay {
+    background: rgba(0,0,0,0.78);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.card {
+    background: rgba(255,255,255,0.12);
+    margin: 15px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.btn {
+    padding: 10px 15px;
+    background: red;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+<h1>EMERGENCY & IMPORTANT CONTACTS</h1>
+
+<!-- MAIN HELPLINE -->
+<div class="card">
+<h2>Campus Helpline (24/7 Support)</h2>
+<p>📞 +91 80 4619 9000 / 9100</p>
+<p>📞 +91 80 4129 9200</p>
+</div>
+
+<!-- ADMISSIONS -->
+<div class="card">
+<h2>Admissions Helpdesk</h2>
+<p>📞 +91 96200 09825 (UG)</p>
+<p>📞 +91 99002 29974 (PG)</p>
+<p>📧 admissions@alliance.edu.in</p>
+</div>
+
+<!-- GENERAL ENQUIRY -->
+<div class="card">
+<h2>General Enquiry</h2>
+<p>📧 enquiry@alliance.edu.in</p>
+<p>📞 080 4619 9000</p>
+</div>
+
+<!-- PLACEMENTS -->
+<div class="card">
+<h2>Placement Cell</h2>
+<p>📞 +91 80 4619 9066</p>
+<p>📧 placements@alliance.edu.in</p>
+</div>
+
+<!-- MEDICAL / URGENT ACTION -->
+<div class="card">
+<h2>Emergency Instructions</h2>
+<p>
+🚨 In case of medical emergency:<br>
+✔ Call campus helpline immediately<br>
+✔ Visit nearest hospital<br>
+✔ Inform hostel / faculty in charge
+</p>
+</div>
+
+<!-- BACK BUTTON -->
+<div style="text-align:center;">
+<button class="btn" onclick="location.href='dashboard.html'">
+Back to Dashboard
+</button>
+</div>
+
+<footer>
+ALLIANCE UNIVERSITY
+</footer>
+
+</div>
+
+<script>
+if (!sessionStorage.getItem("loggedIn")) {
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
