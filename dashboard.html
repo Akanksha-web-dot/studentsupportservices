@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: url("ADMIN BLOCK (1).webp") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        .overlay {
+            background: rgba(0,0,0,0.7);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px;
+            background: rgba(0,0,0,0.7);
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logout {
+            background: red;
+            padding: 8px 15px;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <div class="topbar">
+        <h2>WELCOME STUDENT</h2>
+        <button class="logout" onclick="logout()">Logout</button>
+    </div>
+
+    <div class="grid">
+
+        <div class="card" onclick="openPage('wellness')">
+            WELLNESS
+        </div>
+
+        <div class="card" onclick="openPage('academics')">
+            ACADEMICS
+        </div>
+
+        <div class="card" onclick="openPage('faqs')">
+            FAQS
+        </div>
+
+        <div class="card" onclick="openPage('emergency')">
+            EMERGENCY
+        </div>
+
+        <div class="card" onclick="openPage('admin')">
+            ADMIN CONSOLE
+        </div>
+
+    </div>
+
+    <footer>ALLIANCE UNIVERSITY</footer>
+
+</div>
+
+<script>
+if (!sessionStorage.getItem("loggedIn")) {
+    window.location.href = "index.html";
+}
+
+function openPage(page) {
+    alert(page.toUpperCase() + " section coming soon!");
+}
+
+function logout() {
+    sessionStorage.removeItem("loggedIn");
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
