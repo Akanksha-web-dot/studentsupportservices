@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: url("ADMIN BLOCK (1).webp") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        .overlay {
+            background: rgba(0,0,0,0.6);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 50px;
+        }
+
+        button {
+            padding: 12px 25px;
+            margin-top: 20px;
+            background: #2c7be5;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background: rgba(0,0,0,0.7);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="overlay">
+    <h1>WELCOME STUDENT</h1>
+    <button onclick="go()">Enter Dashboard</button>
+</div>
+
+<footer>ALLIANCE UNIVERSITY</footer>
+
+<script>
+if (!sessionStorage.getItem("loggedIn")) {
+    window.location.href = "index.html";
+}
+
+function go() {
+    window.location.href = "dashboard.html";
+}
+</script>
+
+</body>
+</html>
