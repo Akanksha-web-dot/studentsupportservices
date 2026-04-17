@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FAQs - Student Support</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: url("ADMIN BLOCK (1).webp") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+.overlay {
+    background: rgba(0,0,0,0.78);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.faq {
+    background: rgba(255,255,255,0.12);
+    margin: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.question {
+    padding: 15px;
+    font-weight: bold;
+    background: rgba(255,255,255,0.15);
+}
+
+.answer {
+    padding: 15px;
+    background: rgba(0,0,0,0.3);
+}
+
+.btn {
+    padding: 10px 15px;
+    background: #2c7be5;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+<h1>FREQUENTLY ASKED QUESTIONS</h1>
+
+<!-- Q1 -->
+<div class="faq">
+<div class="question">1. How do I log in to the Student Support portal?</div>
+<div class="answer">
+Use your official email ID (example: name@stu.alliance.edu.in) and your password. After successful login, you will be redirected to the dashboard.
+</div>
+</div>
+
+<!-- Q2 -->
+<div class="faq">
+<div class="question">2. What should I do if I forget my password?</div>
+<div class="answer">
+You should contact the university IT helpdesk or reset your password using official university support channels.
+</div>
+</div>
+
+<!-- Q3 -->
+<div class="faq">
+<div class="question">3. How can I check my attendance?</div>
+<div class="answer">
+Go to the ACADEMICS section in the dashboard. You will find subject-wise attendance percentages displayed there.
+</div>
+</div>
+
+<!-- Q4 -->
+<div class="faq">
+<div class="question">4. Where can I get mental health or wellness support?</div>
+<div class="answer">
+Visit the WELLNESS section where counselling, stress management, and health support services are available for students.
+</div>
+</div>
+
+<!-- Q5 -->
+<div class="faq">
+<div class="question">5. What should I do in case of an emergency on campus?</div>
+<div class="answer">
+Immediately contact the campus emergency helpline or visit the nearest medical center for assistance.
+</div>
+</div>
+
+<!-- Q6 -->
+<div class="faq">
+<div class="question">6. How can I submit suggestions or feedback?</div>
+<div class="answer">
+Go to the ACADEMICS section where a suggestion box is provided. Your feedback is sent to the admin console for review.
+</div>
+</div>
+
+<!-- BACK BUTTON -->
+<div style="text-align:center;">
+<button class="btn" onclick="location.href='dashboard.html'">
+Back to Dashboard
+</button>
+</div>
+
+<footer>
+ALLIANCE UNIVERSITY
+</footer>
+
+</div>
+
+<script>
+if (!sessionStorage.getItem("loggedIn")) {
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
