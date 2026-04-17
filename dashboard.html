@@ -14,14 +14,105 @@ body {
 }
 
 .overlay {
-    background: rgba(0,0,0,0.75);
+    background: rgba(0,0,0,0.78);
     min-height: 100vh;
     padding: 20px;
 }
 
 h1 {
     text-align: center;
+    margin-bottom: 10px;
+}
+
+.sub {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ddd;
 }
 
 .grid {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.15);
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.05);
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 10px;
+    background: rgba(0,0,0,0.7);
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+<h1>WELCOME STUDENT</h1>
+<div class="sub">Student Support Services Dashboard</div>
+
+<div class="grid">
+
+    <!-- WELLNESS -->
+    <div class="card" onclick="location.href='wellness.html'">
+        <h3>WELLNESS</h3>
+        <p>Mental & Physical Health</p>
+    </div>
+
+    <!-- ACADEMICS -->
+    <div class="card" onclick="location.href='academics.html'">
+        <h3>ACADEMICS</h3>
+        <p>Attendance & Performance</p>
+    </div>
+
+    <!-- FAQS -->
+    <div class="card" onclick="location.href='faqs.html'">
+        <h3>FAQS</h3>
+        <p>Student Queries</p>
+    </div>
+
+    <!-- EMERGENCY -->
+    <div class="card" onclick="location.href='emergency.html'">
+        <h3>EMERGENCY</h3>
+        <p>Helpline Contacts</p>
+    </div>
+
+    <!-- ADMIN -->
+    <div class="card" onclick="location.href='admin.html'">
+        <h3>ADMIN CONSOLE</h3>
+        <p>Student Feedback</p>
+    </div>
+
+</div>
+
+<footer>
+ALLIANCE UNIVERSITY
+</footer>
+
+</div>
+
+<script>
+/* LOGIN PROTECTION */
+if (!sessionStorage.getItem("loggedIn")) {
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
