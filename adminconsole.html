@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Console</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: url("ADMIN BLOCK (1).webp") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+.overlay {
+    background: rgba(0,0,0,0.8);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.card {
+    background: rgba(255,255,255,0.12);
+    margin: 15px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+button {
+    padding: 8px 12px;
+    background: red;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.btn-back {
+    background: #2c7be5;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+<h1>ADMIN CONSOLE - STUDENT FEEDBACK</h1>
+
+<div id="list"></div>
+
+<div style="text-align:center;">
+<button class="btn-back" onclick="location.href='dashboard.html'">
+Back to Dashboard
+</button>
+</div>
+
+<footer>
+ALLIANCE UNIVERSITY
+</footer>
+
+</div>
+
+<script>
+if (!sessionStorage.getItem("loggedIn")) {
+    window.location.href = "index.html";
+}
+
+// load suggestions
+function loadSuggestions() {
+    let data = JSON.parse(localStorage.getItem("suggestions") || "[]");
+    let list = document.getElementById("list");
+
+    list.innerHTML = "";
+
+    if (data.length === 0) {
+        list.innerHTML = "<div class='card'>No suggestions yet</div>";
+        return;
+    }
+
+    data.forEach((item, index) => {
+        let div = document.createElement("div");
+        div.className = "card";
+        div.innerHTML = `
+            <p><b>Suggestion ${index + 1}:</b></p>
+            <p>${item}</p>
+            <button onclick="deleteItem(${index})">Delete</button>
+        `;
+        list.appendChild(div);
+    });
+}
+
+// delete suggestion
+function deleteItem(index) {
+    let data = JSON.parse(localStorage.getItem("suggestions") || "[]");
+    data.splice(index, 1);
+    localStorage.setItem("suggestions", JSON.stringify(data));
+    loadSuggestions();
+}
+
+loadSuggestions();
+</script>
+
+</body>
+</html>
