@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Wellness - Student Support</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+
+        background: url("ADMIN BLOCK (1).webp") no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+    }
+
+    .overlay {
+        background: rgba(0,0,0,0.75);
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .section {
+        background: rgba(255,255,255,0.12);
+        padding: 15px;
+        margin: 15px;
+        border-radius: 10px;
+    }
+
+    a {
+        color: #00d4ff;
+        text-decoration: none;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        background: #2c7be5;
+        border: none;
+        color: white;
+        cursor: pointer;
+        border-radius: 6px;
+        margin-top: 10px;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 20px;
+        padding: 10px;
+        background: rgba(0,0,0,0.6);
+    }
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+<h1>WELLNESS SUPPORT</h1>
+
+<!-- MENTAL WELLNESS -->
+<div class="section">
+<h2>Mental Wellness</h2>
+<p>
+Alliance University provides counselling support to help students manage stress, anxiety,
+and academic pressure through professional guidance and student welfare services.
+</p>
+<p>
+✔ Talk to counsellors for emotional support<br>
+✔ Stress & anxiety management guidance<br>
+✔ Academic pressure handling
+</p>
+</div>
+
+<!-- PHYSICAL WELLNESS -->
+<div class="section">
+<h2>Physical Wellness</h2>
+<p>
+Medical support and basic health care assistance are available for students on campus.
+</p>
+<p>
+✔ Health check-ups<br>
+✔ Emergency medical assistance<br>
+✔ Basic clinic support
+</p>
+</div>
+
+<!-- IMPORTANT CONTACTS -->
+<div class="section">
+<h2>Important Contacts (Alliance University)</h2>
+
+<p><b>General Helpline:</b> +91 80 4619 9000 / 9100</p>
+<p><b>Admissions:</b> +91 96200 09825</p>
+<p><b>Placements:</b> +91 80 4619 9066</p>
+<p><b>Email:</b> enquiry@alliance.edu.in</p>
+
+<p>
+These contacts are taken from official Alliance University support & admissions page.
+</p>
+</div>
+
+<!-- EMERGENCY -->
+<div class="section">
+<h2>Emergency Support</h2>
+<p>If you are in urgent distress:</p>
+<p>
+📞 Call campus helpline immediately<br>
+📧 Contact student welfare cell<br>
+🏥 Visit nearest hospital if required
+</p>
+</div>
+
+<!-- NAVIGATION -->
+<div class="section" style="text-align:center;">
+<button class="btn" onclick="goDashboard()">Back to Dashboard</button>
+</div>
+
+<footer>
+ALLIANCE UNIVERSITY
+</footer>
+
+</div>
+
+<script>
+if (!sessionStorage.getItem("loggedIn")) {
+    window.location.href = "index.html";
+}
+
+function goDashboard() {
+    window.location.href = "dashboard.html";
+}
+</script>
+
+</body>
+</html>
