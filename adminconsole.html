@@ -1,115 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Admin Console</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial;
-    background: url("ADMIN BLOCK (1).webp") no-repeat center center fixed;
-    background-size: cover;
-    color: white;
+body{
+    margin:0;
+    font-family:Arial;
+    background:url("ADMIN BLOCK (1).webp") no-repeat center center fixed;
+    background-size:cover;
+    color:white;
 }
 
-.overlay {
-    background: rgba(0,0,0,0.8);
-    min-height: 100vh;
-    padding: 20px;
+.overlay{
+    background:rgba(0,0,0,0.85);
+    min-height:100vh;
+    padding:20px;
 }
 
-h1 {
-    text-align: center;
+.box{
+    width:300px;
+    margin:auto;
+    margin-top:120px;
+    background:white;
+    color:black;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
 }
 
-.card {
-    background: rgba(255,255,255,0.12);
-    margin: 15px;
-    padding: 15px;
-    border-radius: 10px;
+input{
+    width:90%;
+    padding:10px;
+    margin:10px 0;
 }
 
-button {
-    padding: 8px 12px;
-    background: red;
-    border: none;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
+button{
+    padding:10px;
+    width:95%;
+    background:#2c7be5;
+    color:white;
+    border:none;
 }
 
-.btn-back {
-    background: #2c7be5;
-}
-
-footer {
-    text-align: center;
-    margin-top: 20px;
-    padding: 10px;
+.card{
+    background:rgba(255,255,255,0.12);
+    padding:15px;
+    margin:10px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="overlay">
+<!-- ================= LOGIN SCREEN ================= -->
+<div id="loginPage" class="box">
+<h2>Admin Login</h2>
 
-<h1>ADMIN CONSOLE - STUDENT FEEDBACK</h1>
+<input type="text" id="id" placeholder="Admin ID">
+<input type="password" id="pass" placeholder="Password">
 
-<div id="list"></div>
+<button onclick="login()">Login</button>
 
-<div style="text-align:center;">
-<button class="btn-back" onclick="location.href='dashboard.html'">
-Back to Dashboard
-</button>
+<p id="err" style="color:red;"></p>
 </div>
 
-<footer>
-ALLIANCE UNIVERSITY
-</footer>
+<!-- ================= ADMIN PANEL ================= -->
+<div id="adminPanel" class="overlay" style="display:none;">
+
+<h2>ADMIN CONSOLE</h2>
+
+<div class="card">
+<h3>Attendance</h3>
+<input type="number" id="att">
+<button onclick="saveAtt()">Save</button>
+</div>
+
+<div class="card">
+<h3>Subjects</h3>
+<input type="text" id="sub">
+<button onclick="addSub()">Add</button>
+</div>
+
+<div class="card">
+<h3>Timetable</h3>
+<input type="text" id="day" placeholder="Day">
+<input type="text" id="t" placeholder="Subject">
+<button onclick="addTT()">Add</button>
+</div>
+
+<div class="card">
+<h3>Suggestions</h3>
+<div id="sug"></div>
+</div>
 
 </div>
 
 <script>
-if (!sessionStorage.getItem("loggedIn")) {
-    window.location.href = "index.html";
+
+/// ================= LOGIN (NO SESSION STORAGE) =================
+function login(){
+    let id=document.getElementById("id").value;
+    let pass=document.getElementById("pass").value;
+
+    if(id==="admin@alliance.edu.in" && pass!==""){
+        document.getElementById("loginPage").style.display="none";
+        document.getElementById("adminPanel").style.display="block";
+        loadAll();
+    } else {
+        document.getElementById("err").innerText="Invalid Login";
+    }
 }
 
-// load suggestions
-function loadSuggestions() {
-    let data = JSON.parse(localStorage.getItem("suggestions") || "[]");
-    let list = document.getElementById("list");
+/// ================= ATTENDANCE =================
+function saveAtt(){
+    let a=document.getElementById("att").value;
+    localStorage.setItem("attendance",a);
+}
 
-    list.innerHTML = "";
+/// ================= SUBJECTS =================
+function addSub(){
+    let s=document.getElementById("sub").value;
+    let arr=JSON.parse(localStorage.getItem("subjects"))||[];
+    arr.push(s);
+    localStorage.setItem("subjects",JSON.stringify(arr));
+}
 
-    if (data.length === 0) {
-        list.innerHTML = "<div class='card'>No suggestions yet</div>";
-        return;
-    }
+/// ================= TIMETABLE =================
+function addTT(){
+    let d=document.getElementById("day").value;
+    let t=document.getElementById("t").value;
 
-    data.forEach((item, index) => {
-        let div = document.createElement("div");
-        div.className = "card";
-        div.innerHTML = `
-            <p><b>Suggestion ${index + 1}:</b></p>
-            <p>${item}</p>
-            <button onclick="deleteItem(${index})">Delete</button>
-        `;
-        list.appendChild(div);
+    let tt=JSON.parse(localStorage.getItem("timetable"))||{};
+    tt[d]=t;
+
+    localStorage.setItem("timetable",JSON.stringify(tt));
+}
+
+/// ================= LOAD SUGGESTIONS =================
+function loadAll(){
+    let s=JSON.parse(localStorage.getItem("suggestions"))||[];
+    let box=document.getElementById("sug");
+
+    box.innerHTML="";
+
+    s.forEach(x=>{
+        box.innerHTML+=`<div class="card">${x}</div>`;
     });
 }
 
-// delete suggestion
-function deleteItem(index) {
-    let data = JSON.parse(localStorage.getItem("suggestions") || "[]");
-    data.splice(index, 1);
-    localStorage.setItem("suggestions", JSON.stringify(data));
-    loadSuggestions();
-}
-
-loadSuggestions();
 </script>
 
 </body>
