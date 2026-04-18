@@ -1,83 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Academics</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial;
-    background: url("ADMIN BLOCK (1).webp") no-repeat center center fixed;
-    background-size: cover;
-    color: white;
+body{
+    margin:0;
+    font-family:Arial;
+    background:url("ADMIN BLOCK (1).webp") no-repeat center center fixed;
+    background-size:cover;
+    color:white;
 }
 
-.overlay {
-    background: rgba(0,0,0,0.78);
-    min-height: 100vh;
-    padding: 20px;
+.overlay{
+    background:rgba(0,0,0,0.8);
+    min-height:100vh;
+    padding:20px;
 }
 
-h1 {
-    text-align: center;
+.card{
+    background:rgba(255,255,255,0.12);
+    padding:15px;
+    margin:10px;
+    border-radius:10px;
 }
 
-/* cards */
-.section {
-    background: rgba(255,255,255,0.12);
-    margin: 15px;
-    padding: 15px;
-    border-radius: 10px;
+button{
+    padding:10px;
+    margin-top:10px;
+    background:#2c7be5;
+    color:white;
+    border:none;
+    cursor:pointer;
 }
 
-/* BAR GRAPH */
-.bar-container {
-    width: 100%;
-    background: rgba(255,255,255,0.2);
-    border-radius: 10px;
-    margin: 10px 0;
-}
-
-.bar {
-    height: 20px;
-    background: #2c7be5;
-    border-radius: 10px;
-    text-align: right;
-    padding-right: 5px;
-}
-
-/* table */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-td, th {
-    border: 1px solid white;
-    padding: 8px;
-    text-align: center;
-}
-
-/* input */
-textarea {
-    width: 100%;
-    height: 80px;
-    padding: 10px;
-}
-
-button {
-    padding: 10px 15px;
-    background: #2c7be5;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-footer {
-    text-align: center;
-    margin-top: 20px;
+textarea,input{
+    width:95%;
+    padding:8px;
 }
 </style>
 </head>
@@ -86,124 +46,123 @@ footer {
 
 <div class="overlay">
 
-<h1>ACADEMICS DASHBOARD</h1>
+<h2>ACADEMICS</h2>
 
 <!-- ATTENDANCE -->
-<div class="section">
-<h2>Attendance</h2>
-
-<p>Data Science</p>
-<div class="bar-container">
-<div class="bar" style="width: 85%;">85%</div>
+<div class="card">
+<h3>Attendance</h3>
+<input type="number" id="att" placeholder="Enter Attendance %">
+<button onclick="saveAtt()">Save</button>
 </div>
 
-<p>AI & ML</p>
-<div class="bar-container">
-<div class="bar" style="width: 78%;">78%</div>
-</div>
-
-<p>Physics</p>
-<div class="bar-container">
-<div class="bar" style="width: 92%;">92%</div>
-</div>
-
+<!-- SUBJECTS -->
+<div class="card">
+<h3>Subjects</h3>
+<input type="text" id="sub" placeholder="Enter Subject">
+<button onclick="addSub()">Add</button>
+<ul id="subList"></ul>
 </div>
 
 <!-- TIMETABLE -->
-<div class="section">
-<h2>Timetable</h2>
-<table>
-<tr>
-<th>Day</th>
-<th>Subject</th>
-<th>Time</th>
-</tr>
-
-<tr>
-<td>Mon</td>
-<td>Data Science</td>
-<td>9:00 - 11:00</td>
-</tr>
-
-<tr>
-<td>Tue</td>
-<td>AI & ML</td>
-<td>11:00 - 1:00</td>
-</tr>
-
-<tr>
-<td>Wed</td>
-<td>Physics</td>
-<td>2:00 - 4:00</td>
-</tr>
-
+<div class="card">
+<h3>Timetable</h3>
+<input type="text" id="day" placeholder="Day">
+<input type="text" id="t" placeholder="Subject">
+<button onclick="addTT()">Add</button>
+<table border="1" width="100%" style="color:white;">
+<tr><th>Day</th><th>Subject</th></tr>
+<tbody id="ttable"></tbody>
 </table>
 </div>
 
-<!-- FACULTY -->
-<div class="section">
-<h2>Faculty Emails</h2>
-
-<p>Dr. Sharma - ds@alliance.edu.in</p>
-<p>Dr. Rao - aiml@alliance.edu.in</p>
-<p>Dr. Mehta - physics@alliance.edu.in</p>
-
-</div>
-
-<!-- PERFORMANCE -->
-<div class="section">
-<h2>Performance Overview</h2>
-
-<p>CGPA Progress</p>
-<div class="bar-container">
-<div class="bar" style="width: 88%;">8.8 CGPA</div>
-</div>
-
-</div>
-
 <!-- SUGGESTION BOX -->
-<div class="section">
-<h2>Student Suggestion Box</h2>
-
-<textarea id="suggestion" placeholder="Write your suggestion..."></textarea>
-<br>
-<button onclick="submitSuggestion()">Submit</button>
-
-<p id="msg"></p>
+<div class="card">
+<h3>Suggestion Box</h3>
+<textarea id="suggestion" placeholder="Enter suggestion"></textarea>
+<button onclick="sendSug()">Submit</button>
 </div>
 
-<!-- BACK -->
-<div class="section" style="text-align:center;">
-<button onclick="location.href='dashboard.html'">Back to Dashboard</button>
+<!-- LINK TO ADMIN -->
+<div class="card" style="text-align:center;">
+<button onclick="openAdmin()">Open Admin Console</button>
 </div>
-
-<footer>
-ALLIANCE UNIVERSITY
-</footer>
 
 </div>
 
 <script>
-if (!sessionStorage.getItem("loggedIn")) {
-    window.location.href = "index.html";
+
+/// ================= ATTENDANCE =================
+function saveAtt(){
+    let a=document.getElementById("att").value;
+    localStorage.setItem("attendance",a);
 }
 
-// store suggestion for admin console
-function submitSuggestion() {
-    let text = document.getElementById("suggestion").value;
+/// ================= SUBJECTS =================
+function addSub(){
+    let s=document.getElementById("sub").value;
 
-    if (text.trim() === "") {
-        alert("Please write something");
-        return;
+    let arr=JSON.parse(localStorage.getItem("subjects"))||[];
+    arr.push(s);
+
+    localStorage.setItem("subjects",JSON.stringify(arr));
+
+    loadSub();
+}
+
+function loadSub(){
+    let arr=JSON.parse(localStorage.getItem("subjects"))||[];
+    let list=document.getElementById("subList");
+
+    list.innerHTML="";
+
+    arr.forEach(x=>{
+        list.innerHTML+=`<li>${x}</li>`;
+    });
+}
+loadSub();
+
+/// ================= TIMETABLE =================
+function addTT(){
+    let d=document.getElementById("day").value;
+    let t=document.getElementById("t").value;
+
+    let tt=JSON.parse(localStorage.getItem("timetable"))||{};
+    tt[d]=t;
+
+    localStorage.setItem("timetable",JSON.stringify(tt));
+
+    loadTT();
+}
+
+function loadTT(){
+    let tt=JSON.parse(localStorage.getItem("timetable"))||{};
+    let body=document.getElementById("ttable");
+
+    body.innerHTML="";
+
+    for(let k in tt){
+        body.innerHTML+=`<tr><td>${k}</td><td>${tt[k]}</td></tr>`;
     }
-
-    let data = JSON.parse(localStorage.getItem("suggestions") || "[]");
-    data.push(text);
-    localStorage.setItem("suggestions", JSON.stringify(data));
-
-    document.getElementById("msg").innerText = "Submitted successfully!";
-    document.getElementById("suggestion").value = "";
 }
+loadTT();
+
+/// ================= SUGGESTIONS =================
+function sendSug(){
+    let s=document.getElementById("suggestion").value;
+
+    let arr=JSON.parse(localStorage.getItem("suggestions"))||[];
+    arr.push(s);
+
+    localStorage.setItem("suggestions",JSON.stringify(arr));
+
+    document.getElementById("suggestion").value="";
+}
+
+/// ================= OPEN ADMIN =================
+function openAdmin(){
+    window.location.href="admin.html";
+}
+
 </script>
 
 </body>
